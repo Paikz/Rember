@@ -7,13 +7,17 @@
     <string name="button_back">Back</string>
     <string name="app_welcome">Welcome</string>
     <string name="button_next">Next</string>
+    <string name="button_sendCode">Send Code</string>
     <string name="setting1">General</string>
     <string name="setting1_frag">General Fragment</string>
     <string name="setting2">Theme</string>
     <string name="setting3">Notifications</string>
     <string name="setting4">Change Number</string>
     <string name="setting5">About</string>
+    <string name="registerInfo">You will receive a verification code on your phone.</string>
+    <string name="numberExample">ex. 0730123456</string>
+    <string name="register_ongoing">Cannot send another code. Please, try again later.</string>
+    <string name="register">Register</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

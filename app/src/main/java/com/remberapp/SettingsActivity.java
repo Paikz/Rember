@@ -1,5 +1,6 @@
 package com.remberapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.view.View;
@@ -20,13 +21,11 @@ public class SettingsActivity extends BaseActivity {
     public void click(View v) {
         switch(v.getId()) {
             case R.id.general:
+                Intent intentBundle = new Intent(this, OptionGeneralActivity.class);
                 Bundle args = new Bundle();
-                args.putString("OptionName", generalStr);
-                GeneralOptions fragment = new GeneralOptions();
-                fragment.setArguments(args);
-                FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
-                transaction.replace(R.id.ConstLayout, fragment).addToBackStack(null);
-                transaction.commit();
+                args.putString("Name", generalStr);
+                intentBundle.putExtras(args);
+                startActivity(intentBundle);
                 break;
             case R.id.theme:
                 break;
