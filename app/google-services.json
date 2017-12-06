@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "648970817908",
+    "firebase_url": "https://rember-5b5d2.firebaseio.com",
+    "project_id": "rember-5b5d2",
+    "storage_bucket": "rember-5b5d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:648970817908:android:f83e52a1a2511bc3",
+        "android_client_info": {
+          "package_name": "com.remberapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "648970817908-5ntu17dofgfijku2olh2emqtmtv6sq6b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.remberapp",
+            "certificate_hash": "3ffa15ee10e62fae11c0a6a96560eef293c70f6d"
+          }
+        },
+        {
+          "client_id": "648970817908-d51d9b52en0121h62oosh5nk107laa09.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAowIwB5a4FW5KDDETCHzLMv_SOaBszawA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "648970817908-d51d9b52en0121h62oosh5nk107laa09.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

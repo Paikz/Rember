@@ -8,18 +8,24 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class RegisterActivity extends AppCompatActivity {
-    Boolean Registered = false;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
-        //TODO: Check if user is registered. @Registered = true if user is. DO NOTHING if not.
+        mAuth = FirebaseAuth.getInstance();
+        //Uncomment to get to register page again
+        //FirebaseAuth.getInstance().signOut();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (Registered) {
+        if (currentUser != null) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
