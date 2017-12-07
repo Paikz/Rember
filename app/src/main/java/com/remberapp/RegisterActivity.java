@@ -11,9 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 
 public class RegisterActivity extends AppCompatActivity {
-    Boolean Registered = false;
+    private FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +25,12 @@ public class RegisterActivity extends AppCompatActivity {
         EditText numberField = findViewById(R.id.Number);
         Button button = findViewById(R.id.button);
 
-        //TODO: Check if user is registered. @Registered = true if user is. DO NOTHING if not.
+        mAuth = FirebaseAuth.getInstance();
+        //Uncomment to get to register page again
+        //FirebaseAuth.getInstance().signOut();
+        FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        if (Registered) {
+        if (currentUser != null) {
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
         }
