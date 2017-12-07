@@ -28,7 +28,11 @@
             android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".Register2Activity" />
-        <activity android:name=".OptionGeneralActivity"></activity>
+        <activity android:name=".Options.OptionGeneralActivity" />
+        <activity android:name=".Options.OptionThemeActivity" />
+        <activity android:name=".Options.OptionNotificationActivity" />
+        <activity android:name=".Options.OptionChangeNumberActivity" />
+        <activity android:name=".Options.OptionAboutActivity"></activity>
     </application>
 
 </manifest>

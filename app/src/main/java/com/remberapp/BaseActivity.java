@@ -19,6 +19,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
 
         navigationView = (BottomNavigationView) findViewById(R.id.navigation);
         navigationView.setOnNavigationItemSelectedListener(this);
+
     }
 
     @Override

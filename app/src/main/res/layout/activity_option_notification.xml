@@ -15,7 +15,7 @@
         android:layout_marginBottom="8dp"
         android:layout_marginTop="176dp"
         android:fontFamily="@font/roboto_light"
-        android:text="@string/setting1"
+        android:text="@string/setting3"
         android:textAlignment="center"
         app:layout_constraintBottom_toBottomOf="@+id/navigation"
         app:layout_constraintEnd_toEndOf="parent"

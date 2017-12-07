@@ -1,7 +1,6 @@
 package com.remberapp.Options;
 
 import android.content.Intent;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,17 +9,16 @@ import android.widget.TextView;
 import com.remberapp.R;
 import com.remberapp.SettingsActivity;
 
-public class OptionGeneralActivity extends AppCompatActivity {
+public class OptionThemeActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_option_general);
+        setContentView(R.layout.activity_option_theme);
     }
 
     public void GoBack(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
 }

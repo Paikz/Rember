@@ -1,5 +1,7 @@
 package com.remberapp;
 
+import android.os.Bundle;
+
 public class HomeActivity extends BaseActivity {
 
     @Override

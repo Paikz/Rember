@@ -9,7 +9,6 @@
     <string name="button_next">Next</string>
     <string name="button_sendCode">Send Code</string>
     <string name="setting1">General</string>
-    <string name="setting1_frag">General Fragment</string>
     <string name="setting2">Theme</string>
     <string name="setting3">Notifications</string>
     <string name="setting4">Change Number</string>

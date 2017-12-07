@@ -8,5 +8,6 @@
     <color name="remberDarkGray">#8d8d8d</color>
     <color name="remberLightGray">#cbcbcb</color>
     <color name="remberWhite">#ffffff</color>
+    <color name="grayButton">#696969</color>
 
 </resources>
