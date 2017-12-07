@@ -3,11 +3,10 @@ package com.remberapp;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
-import android.os.PersistableBundle;
+import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.Editable;
 import android.text.SpannableString;
 import android.text.Spanned;
@@ -15,11 +14,9 @@ import android.text.TextPaint;
 import android.text.TextWatcher;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
-import android.text.style.RelativeSizeSpan;
-import android.view.View;
-import android.widget.Button;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -217,7 +214,7 @@ public class Register2Activity extends AppCompatActivity {
         } else {
             veri.setError("This field can not be blank");
         }
-        EditText verificationInput = findViewById(R.id.editView);
+        EditText verificationInput = findViewById(R.id.verification);
         verificationString = verificationInput.getText().toString();
 
         PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationString);
