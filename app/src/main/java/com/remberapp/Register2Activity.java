@@ -207,18 +207,14 @@ public class Register2Activity extends AppCompatActivity {
             if (veri.getText().length()<6) {
                 veri.setError("Number should be 6 characters");
             } else {
-                //Redirect to Home
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                //Create credential obj
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, veriStr);
+                signInWithPhoneAuthCredential(credential);
             }
         } else {
             veri.setError("This field can not be blank");
         }
-        EditText verificationInput = findViewById(R.id.verification);
-        verificationString = verificationInput.getText().toString();
 
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationString);
-        signInWithPhoneAuthCredential(credential);
     }
 
     @Override
