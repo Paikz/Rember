@@ -81,7 +81,6 @@ public class Register2Activity extends AppCompatActivity {
                  * @Cooldown = Boolean. Checks if code can be sent again.
                  */
                 if (!Cooldown) {
-                    //TODO: Send code Again.
                     startPhoneNumberVerification(number);
                     Cooldown = true;
                     Toast.makeText(context, "Code has been sent", Toast.LENGTH_LONG).show();
@@ -198,8 +197,6 @@ public class Register2Activity extends AppCompatActivity {
     }
 
     public void ConfirmReg(View view) {
-        //TODO: "Register" button action. AKA Confirm Registration.
-
         EditText veri = findViewById(R.id.verification);
         String veriStr = veri.getText().toString();
 
@@ -207,18 +204,12 @@ public class Register2Activity extends AppCompatActivity {
             if (veri.getText().length()<6) {
                 veri.setError("Number should be 6 characters");
             } else {
-                //Redirect to Home
-                Intent intent = new Intent(this, HomeActivity.class);
-                startActivity(intent);
+                PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, veriStr);
+                signInWithPhoneAuthCredential(credential);
             }
         } else {
             veri.setError("This field can not be blank");
         }
-        EditText verificationInput = findViewById(R.id.verification);
-        verificationString = verificationInput.getText().toString();
-
-        PhoneAuthCredential credential = PhoneAuthProvider.getCredential(mVerificationId, verificationString);
-        signInWithPhoneAuthCredential(credential);
     }
 
     @Override

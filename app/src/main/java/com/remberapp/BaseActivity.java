@@ -8,6 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.remberapp.NewReminder.CreateRem1Activity;
+
 public abstract class BaseActivity extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener {
 
     protected BottomNavigationView navigationView;
@@ -42,7 +44,7 @@ public abstract class BaseActivity extends AppCompatActivity implements BottomNa
             if (itemId == R.id.navigation_home) {
                 startActivity(new Intent(this, HomeActivity.class));
             } else if (itemId == R.id.navigation_add_reminder) {
-                startActivity(new Intent(this, AddReminderActivity.class));
+                startActivity(new Intent(this, CreateRem1Activity.class));
             } else if (itemId == R.id.navigation_contacts) {
                 startActivity(new Intent(this, ContactsActivity.class));
             } else if (itemId == R.id.navigation_settings) {

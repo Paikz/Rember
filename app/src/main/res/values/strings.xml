@@ -7,8 +7,15 @@
     <string name="button_back">Back</string>
     <string name="app_welcome">Welcome</string>
     <string name="button_next">Next</string>
+    <string name="button_next_step">Next Step</string>
     <string name="button_sendCode">Send Code</string>
+    <string name="text_title">Title</string>
+    <string name="text_description">Description</string>
+    <string name="text_pick_date">Pick Date</string>
+    <string name="text_pick_time">Pick Time</string>
     <string name="setting1">General</string>
+    <string name="text_to">To: </string>
+    <string name="text_create">Create</string>
     <string name="setting2">Theme</string>
     <string name="setting3">Notifications</string>
     <string name="setting4">Change Number</string>
@@ -19,4 +26,5 @@
     <string name="register">Register</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_create_rem1">CreateRem1Activity</string>
 </resources>
