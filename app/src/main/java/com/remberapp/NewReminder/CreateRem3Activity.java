@@ -16,6 +16,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.remberapp.R;
 import java.util.ArrayList;
 import android.text.Editable;
@@ -26,6 +33,10 @@ import android.widget.EditText;
 
 public class CreateRem3Activity extends AppCompatActivity {
     Bundle bundle = new Bundle();
+    //firebase
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("users");
+
     private String title = "";
     private String description = "";
     private String date;
@@ -99,7 +110,7 @@ public class CreateRem3Activity extends AppCompatActivity {
                 Object item = parent.getItemAtPosition(position);
                 Button create = findViewById(R.id.button);
                 String name = item.toString().split("\n")[0];
-                number = item.toString().split("\n")[1];
+                number = item.toString().split("\n")[1].replaceAll(" ","");
                 numberView.setText(name + " (" + number.replaceAll(" ","") + ")");
 
                 create.setBackgroundResource(R.drawable.rounded_shape);
@@ -124,7 +135,7 @@ public class CreateRem3Activity extends AppCompatActivity {
 
             name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-            phonenumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll(" ","");;
+            phonenumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll(" ","");
             if (phonenumber.length() > 8) {
                 StoreContacts.add(name + " "  + "\n" + " " + phonenumber);
             }
@@ -136,9 +147,27 @@ public class CreateRem3Activity extends AppCompatActivity {
 
     public void CreateReminder(View view) {
         if (number != "") {
-            //TODO: Send info to DB. @number(String), @title(String), @description(String), @dateTime(String)
-            //TODO: Check if @number exists in DB.
-            //TODO: Check if successfull.
+
+            //add user to db
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if(dataSnapshot.hasChild(number)){
+                        ref.child(number).child("reminders").child("title").setValue(title);
+                        ref.child(number).child("reminders").child("description").setValue(description);
+                        ref.child(number).child("reminders").child("date").setValue(date);
+                    }
+                    else{
+                        Toast.makeText(CreateRem3Activity.this,"Contact does not exist in database.", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         } else {
             Toast.makeText(CreateRem3Activity.this,"Choose a contact!", Toast.LENGTH_LONG).show();
         }
