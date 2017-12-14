@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/remberLightGray"
+    android:orientation="horizontal"
+    android:padding="5dip">
+
+    <!--  ListRow Left sied Thumbnail image -->
+
+
+    <LinearLayout
+        android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip"
+        android:orientation="vertical"
+        android:padding="3dip">
+
+        <TextView
+            android:id="@+id/time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_light"
+            android:text="20:00"
+            android:textAlignment="center"
+            android:textColor="@color/remberBlack"
+            android:textSize="35sp" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/thumbnail"
+            android:layout_weight="1"
+            android:fontFamily="@font/roboto_light"
+            android:text="13-11-2017"
+            android:textColor="@color/remberBlack"
+            android:textSize="20sp" />
+
+    </LinearLayout>
+
+    <!-- Title Of Song-->
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/thumbnail"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:fontFamily="@font/roboto_thin"
+        android:paddingEnd="8dp"
+        android:paddingTop="8dp"
+        android:text="Reminder title"
+        android:textAlignment="viewEnd"
+        android:textColor="@color/remberBlack"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <!-- Artist Name -->
+
+    <TextView
+        android:id="@+id/from"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/title"
+        android:layout_marginTop="1dip"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:fontFamily="@font/roboto_thin"
+        android:paddingBottom="3dp"
+        android:paddingRight="8dp"
+        android:paddingTop="20dp"
+        android:text="from Someone"
+        android:textAlignment="textEnd"
+        android:textColor="@color/remberDark"
+        android:textSize="14sp" />
+
+    <!-- Rightend Duration -->
+
+
+</RelativeLayout>
+

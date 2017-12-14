@@ -1,11 +1,14 @@
 package com.remberapp.NewReminder;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
+import android.os.Handler;
 import android.provider.ContactsContract;
 import android.support.v4.app.ActivityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +19,8 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.remberapp.HomeActivity;
 import com.remberapp.R;
 import java.util.ArrayList;
 import android.text.Editable;
@@ -100,7 +105,7 @@ public class CreateRem3Activity extends AppCompatActivity {
                 Button create = findViewById(R.id.button);
                 String name = item.toString().split("\n")[0];
                 number = item.toString().split("\n")[1];
-                numberView.setText(name + " (" + number.replaceAll(" ","") + ")");
+                numberView.setText(name);
 
                 create.setBackgroundResource(R.drawable.rounded_shape);
                 create.setTextColor(Color.WHITE);
@@ -124,7 +129,7 @@ public class CreateRem3Activity extends AppCompatActivity {
 
             name = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.DISPLAY_NAME));
 
-            phonenumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll(" ","");;
+            phonenumber = cursor.getString(cursor.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)).replaceAll(" ","");
             if (phonenumber.length() > 8) {
                 StoreContacts.add(name + " "  + "\n" + " " + phonenumber);
             }
@@ -139,6 +144,21 @@ public class CreateRem3Activity extends AppCompatActivity {
             //TODO: Send info to DB. @number(String), @title(String), @description(String), @dateTime(String)
             //TODO: Check if @number exists in DB.
             //TODO: Check if successfull.
+
+            AlertDialog alertDialog = new AlertDialog.Builder(CreateRem3Activity.this).create();
+            alertDialog.setCanceledOnTouchOutside(false);
+            alertDialog.setTitle("Done!");
+            alertDialog.setMessage("Your reminder has been created!");
+            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Nice!",
+                    new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.dismiss();
+                            Intent intent = new Intent(CreateRem3Activity.this, HomeActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+            alertDialog.show();
+
         } else {
             Toast.makeText(CreateRem3Activity.this,"Choose a contact!", Toast.LENGTH_LONG).show();
         }

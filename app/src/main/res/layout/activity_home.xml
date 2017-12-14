@@ -1,147 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/remberDark"
     android:orientation="vertical"
-    tools:context="HomeActivity"
-    >
+    tools:context="HomeActivity">
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/roboto_light"
-        android:text="This is the Home tab built using RelativeLayout."
-        android:textColor="@color/remberWhite" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/roboto_thin"
+        android:text="@string/title_reminders"
+        android:textColor="@color/remberWhite"
+        android:textSize="35sp"
+        app:layout_constraintBottom_toTopOf="@+id/OtherReminders"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.181" />
 
-    <TextView
-        android:id="@+id/explanation"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/title"
-        android:layout_margin="16dp"
-        android:fontFamily="@font/roboto_light"
-        android:text="Here 12 scrolled items follow to validate if nothing gets cropped"
-        android:textColor="@color/remberWhite" />
-
-    <ScrollView
-        android:id="@+id/scrollview"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@id/explanation"
-        android:layout_above="@+id/navigation"
-        tools:context="mobi.garden.bottomnavigationtest.HomeActivity"
-        >
-
-        <LinearLayout
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="1"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="2"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="3"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="4"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="5"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="6"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="7"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="8"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="9"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="10"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="11"
-                android:textColor="@color/remberWhite" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp"
-                android:fontFamily="@font/roboto_thin"
-                android:text="12"
-                android:textColor="@color/remberWhite" />
-
-        </LinearLayout>
-
-    </ScrollView>
 
     <include
         android:id="@+id/navigation"
@@ -149,6 +34,75 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
-</RelativeLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout5"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="20dp"
+        android:background="@color/remberBlue"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title">
+
+        <TextView
+            android:id="@+id/labelP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:text="@string/text_others_reminders"
+            android:textAlignment="center"
+            android:textColor="@color/remberWhite"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/OtherReminders"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="0dp"
+        android:layout_height="25dp"
+        android:background="@color/remberBlue"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/OtherReminders">
+
+        <TextView
+            android:id="@+id/label"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:paddingStart="16dp"
+            android:text="@string/text_your_reminders"
+            android:textAlignment="center"
+            android:textColor="@color/remberWhite"
+            android:textSize="16sp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/YourReminders"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+
+</android.support.constraint.ConstraintLayout>
