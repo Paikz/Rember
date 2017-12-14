@@ -31,6 +31,8 @@ import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.concurrent.TimeUnit;
 
@@ -38,8 +40,11 @@ public class Register2Activity extends AppCompatActivity {
     private String number = "";
     private static final String TAG = "PhoneAuthActivity";
     private static final String KEY_VERIFY_IN_PROGRESS = "key_verify_in_progress";
-
+    //firebase
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("users");
     private FirebaseAuth mAuth;
+
     private PhoneAuthProvider.ForceResendingToken mResendToken;
     private PhoneAuthProvider.OnVerificationStateChangedCallbacks mCallbacks;
     private boolean mVerificationInProgress = false;
@@ -234,6 +239,12 @@ public class Register2Activity extends AppCompatActivity {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             Toast.makeText(getApplicationContext(), "Sign in successful", Toast.LENGTH_LONG).show();
+
+                            FirebaseUser user = task.getResult().getUser();
+
+                            //add user to db
+                            ref.child(number).setValue(user);
+
                             // Redirect to home view
                             Intent intent = new Intent(getApplicationContext(), HomeActivity.class);
                             startActivity(intent);

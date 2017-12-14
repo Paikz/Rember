@@ -20,7 +20,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+
 import com.remberapp.HomeActivity;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.remberapp.R;
 import java.util.ArrayList;
 import android.text.Editable;
@@ -31,6 +38,10 @@ import android.widget.EditText;
 
 public class CreateRem3Activity extends AppCompatActivity {
     Bundle bundle = new Bundle();
+    //firebase
+    final FirebaseDatabase database = FirebaseDatabase.getInstance();
+    DatabaseReference ref = database.getReference("users");
+
     private String title = "";
     private String description = "";
     private String date;
@@ -107,6 +118,7 @@ public class CreateRem3Activity extends AppCompatActivity {
                 number = item.toString().split("\n")[1];
                 numberView.setText(name);
 
+
                 create.setBackgroundResource(R.drawable.rounded_shape);
                 create.setTextColor(Color.WHITE);
             }
@@ -141,10 +153,6 @@ public class CreateRem3Activity extends AppCompatActivity {
 
     public void CreateReminder(View view) {
         if (number != "") {
-            //TODO: Send info to DB. @number(String), @title(String), @description(String), @dateTime(String)
-            //TODO: Check if @number exists in DB.
-            //TODO: Check if successfull.
-
             AlertDialog alertDialog = new AlertDialog.Builder(CreateRem3Activity.this).create();
             alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.setTitle("Done!");
@@ -157,8 +165,28 @@ public class CreateRem3Activity extends AppCompatActivity {
                             startActivity(intent);
                         }
                     });
-            alertDialog.show();
 
+            //add user to db
+            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+
+                    if(dataSnapshot.hasChild(number)){
+                        ref.child(number).child("reminders").child("title").setValue(title);
+                        ref.child(number).child("reminders").child("description").setValue(description);
+                        ref.child(number).child("reminders").child("date").setValue(date);
+                        alertDialog.show();
+                    }
+                    else{
+                        Toast.makeText(CreateRem3Activity.this,"Contact does not exist in database.", Toast.LENGTH_LONG).show();
+                    }
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
         } else {
             Toast.makeText(CreateRem3Activity.this,"Choose a contact!", Toast.LENGTH_LONG).show();
         }
