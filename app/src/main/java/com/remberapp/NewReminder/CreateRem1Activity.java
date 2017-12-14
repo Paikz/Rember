@@ -1,6 +1,7 @@
 package com.remberapp.NewReminder;
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +21,7 @@ public class CreateRem1Activity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_rem1);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
         EditText titleField = findViewById(R.id.title);
         Button button = findViewById(R.id.button);

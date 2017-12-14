@@ -12,6 +12,7 @@
     <string name="button_sendCode">Send Code</string>
     <string name="text_title">Title</string>
     <string name="text_your_reminders">Personal Reminders</string>
+    <string name="text_switch1">Remind yourself?</string>
     <string name="text_others_reminders">Reminders from Contacts</string>
     <string name="text_description">Description</string>
     <string name="text_pick_date">Pick Date</string>

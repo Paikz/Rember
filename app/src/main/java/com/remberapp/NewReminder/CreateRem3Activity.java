@@ -2,6 +2,7 @@ package com.remberapp.NewReminder;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Color;
@@ -16,7 +17,10 @@ import android.view.WindowManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,6 +34,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.remberapp.R;
 import java.util.ArrayList;
+import java.util.Collections;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -40,7 +46,7 @@ public class CreateRem3Activity extends AppCompatActivity {
     Bundle bundle = new Bundle();
     //firebase
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("users");
+    DatabaseReference ref = database.getReference("reminders");
 
     private String title = "";
     private String description = "";
@@ -58,8 +64,10 @@ public class CreateRem3Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_rem3);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         Intent intentExtras = getIntent();
         bundle = intentExtras.getExtras();
+        Button create = findViewById(R.id.button);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         if (bundle != null) {
             title = bundle.getString("Title");
@@ -107,20 +115,39 @@ public class CreateRem3Activity extends AppCompatActivity {
                 // TODO Auto-generated method stub
             }
         });
-
+        Collections.sort(StoreContacts);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Object item = parent.getItemAtPosition(position);
-                Button create = findViewById(R.id.button);
                 String name = item.toString().split("\n")[0];
-                number = item.toString().split("\n")[1];
+                number = item.toString().split("\n")[1].replaceAll(" ", "");
                 numberView.setText(name);
 
 
                 create.setBackgroundResource(R.drawable.rounded_shape);
                 create.setTextColor(Color.WHITE);
+            }
+        });
+
+        Switch switch1 = findViewById(R.id.switch1);
+        EditText search = findViewById(R.id.inputSearch);
+        switch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    listView.setVisibility(View.INVISIBLE);
+                    search.setVisibility(View.INVISIBLE);
+
+                    create.setBackgroundResource(R.drawable.rounded_shape);
+                    create.setTextColor(Color.WHITE);
+                    //TODO: Change number to MY number;
+                    number = "0700412743";
+                } else {
+                    listView.setVisibility(View.VISIBLE);
+                    search.setVisibility(View.VISIBLE);
+                }
+
             }
         });
 
@@ -184,7 +211,7 @@ public class CreateRem3Activity extends AppCompatActivity {
 
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
-
+                    Toast.makeText(CreateRem3Activity.this,"Could not connect to DB!", Toast.LENGTH_LONG).show();
                 }
             });
         } else {

@@ -7,15 +7,17 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class CustomList extends ArrayAdapter<String>{
 
     private final Activity context;
-    private final String[] titleArr;
-    private final String[] timeArr;
-    private final String[] dateArr;
-    private final String[] fromArr;
+    private final ArrayList<String> titleArr;
+    private final ArrayList<String> timeArr;
+    private final ArrayList<String> dateArr;
+    private final ArrayList<String> fromArr;
     public CustomList(Activity context,
-                      String[] titleArr, String[] timeArr, String[] dateArr, String[] fromArr) {
+                      ArrayList<String> titleArr, ArrayList<String> timeArr, ArrayList<String> dateArr, ArrayList<String> fromArr) {
         super(context, R.layout.list_item, titleArr);
         this.context = context;
         this.titleArr = titleArr;
@@ -33,10 +35,10 @@ public class CustomList extends ArrayAdapter<String>{
         TextView date = (TextView) rowView.findViewById(R.id.date);
         TextView from = (TextView) rowView.findViewById(R.id.from);
 
-        title.setText(titleArr[position]);
-        time.setText(timeArr[position]);
-        date.setText(dateArr[position]);
-        from.setText("from " + fromArr[position]);
+        title.setText(titleArr.get(position));
+        time.setText(timeArr.get(position));
+        date.setText(dateArr.get(position));
+        from.setText("from " + fromArr.get(position));
 
         return rowView;
     }
