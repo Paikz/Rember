@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.remberapp.HomeActivity;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -30,6 +31,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.remberapp.R;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.widget.EditText;
@@ -39,13 +44,17 @@ import android.widget.EditText;
 public class CreateRem3Activity extends AppCompatActivity {
     Bundle bundle = new Bundle();
     //firebase
+    private FirebaseAuth mAuth;
     final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    DatabaseReference ref = database.getReference("users");
+    DatabaseReference ref = database.getReference("reminders");
+    DatabaseReference usersRef = database.getReference("users");
+    FirebaseUser currentUser;
 
-    private String title = "";
-    private String description = "";
-    private String date;
-    private String number = "";
+    Map<String, String> listProp = new HashMap<String, String>();
+    private String titleProp = "";
+    private String descriptionProp = "";
+    private String dateProp;
+    private String numberProp = "";
     ListView listView ;
     ArrayList<String> StoreContacts ;
     ArrayAdapter<String> arrayAdapter ;
@@ -60,18 +69,20 @@ public class CreateRem3Activity extends AppCompatActivity {
         setContentView(R.layout.activity_create_rem3);
         Intent intentExtras = getIntent();
         bundle = intentExtras.getExtras();
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
         if (bundle != null) {
-            title = bundle.getString("Title");
-            description = bundle.getString("Description");
-            date = bundle.getString("Date");
+            titleProp = bundle.getString("Title");
+            descriptionProp = bundle.getString("Description");
+            dateProp = bundle.getString("Date");
         }
         TextView numberView = findViewById(R.id.numberView);
         numberView.setText("Choose a contact.");
         TextView titleView = findViewById(R.id.title);
-        titleView.setText(title);
+        titleView.setText(titleProp);
         TextView dateView = findViewById(R.id.date);
-        dateView.setText(date);
+        dateView.setText(dateProp);
 
         listView = (ListView)findViewById(R.id.listview1);
 
@@ -115,7 +126,7 @@ public class CreateRem3Activity extends AppCompatActivity {
                 Object item = parent.getItemAtPosition(position);
                 Button create = findViewById(R.id.button);
                 String name = item.toString().split("\n")[0];
-                number = item.toString().split("\n")[1];
+                numberProp = item.toString().split("\n")[1].replaceAll(" ", "");
                 numberView.setText(name);
 
 
@@ -152,7 +163,7 @@ public class CreateRem3Activity extends AppCompatActivity {
     }
 
     public void CreateReminder(View view) {
-        if (number != "") {
+        if (numberProp != "") {
             AlertDialog alertDialog = new AlertDialog.Builder(CreateRem3Activity.this).create();
             alertDialog.setCanceledOnTouchOutside(false);
             alertDialog.setTitle("Done!");
@@ -167,14 +178,16 @@ public class CreateRem3Activity extends AppCompatActivity {
                     });
 
             //add user to db
-            ref.addListenerForSingleValueEvent(new ValueEventListener() {
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    if(dataSnapshot.hasChild(number)){
-                        ref.child(number).child("reminders").child("title").setValue(title);
-                        ref.child(number).child("reminders").child("description").setValue(description);
-                        ref.child(number).child("reminders").child("date").setValue(date);
+                    if(dataSnapshot.hasChild(numberProp)){
+                        listProp.put("description", descriptionProp);
+                        listProp.put("title", titleProp);
+                        listProp.put("date", dateProp);
+                        listProp.put("from", currentUser.getPhoneNumber());
+                        ref.child(numberProp).push().setValue(listProp);
                         alertDialog.show();
                     }
                     else{
