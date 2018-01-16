@@ -1,0 +1,153 @@
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/remberDark"
+    tools:context="com.remberapp.NewReminder.CreateRem2Activity">
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="0dp"
+        android:layout_height="399dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/roboto_thin"
+            android:text="@string/app_welcome"
+            android:textColor="@color/remberWhite"
+            android:textSize="35sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="20dp"
+            android:background="@color/remberBlue"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title">
+
+            <TextView
+                android:id="@+id/date"
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:paddingStart="16dp"
+                android:text="Nov, 20 2017"
+                android:textAlignment="center"
+                android:textColor="@color/remberWhite"
+                android:textSize="24sp" />
+
+        </LinearLayout>
+
+    </android.support.constraint.ConstraintLayout>
+
+    <Button
+        android:id="@+id/button2"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="198dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="43dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="roboto"
+        android:text="@string/text_pick_date"
+        android:textColor="@color/grayButton"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/button3"
+        app:layout_constraintEnd_toEndOf="@+id/constraintLayout"
+        app:layout_constraintStart_toStartOf="@+id/constraintLayout"
+        app:layout_constraintTop_toTopOf="@+id/constraintLayout"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/button3"
+        style="@style/AppTheme.RoundedCornerMaterialButton"
+        android:layout_width="198dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="152dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:fontFamily="roboto"
+        android:text="@string/text_pick_time"
+        android:textColor="@color/grayButton"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="40dp"
+        android:background="@drawable/rounded_shape"
+        android:onClick="GoBack"
+        android:padding="6dp"
+        android:paddingEnd="20dp"
+        android:paddingStart="20dp"
+        android:elevation="2dp"
+        android:src="@android:drawable/ic_menu_revert"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toStartOf="@+id/button"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        style="@style/AppTheme.RoundedCornerMaterialButton2"
+        android:layout_width="198dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="40dp"
+        android:fontFamily="roboto"
+        android:onClick="ToStage3"
+        android:text="@string/button_next_step"
+        android:textColor="@color/remberWhite"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout3"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="364dp"
+        android:layout_height="45dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <ProgressBar
+            android:id="@+id/progressBar2"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="28dp"
+            android:progressBackgroundTint="@color/remberDarkGray"
+            android:progressTint="@color/remberBlue"
+            android:progress="33"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="440dp" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>

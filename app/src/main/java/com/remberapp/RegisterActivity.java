@@ -2,7 +2,9 @@ package com.remberapp;
 
 
 import android.content.Intent;
+import android.content.pm.ActivityInfo;
 import android.graphics.Color;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
@@ -10,6 +12,7 @@ import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -17,13 +20,16 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class RegisterActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
+    public static final int RequestPermissionCode  = 1 ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         EditText numberField = findViewById(R.id.Number);
         Button button = findViewById(R.id.button);
+        EnableRuntimePermission();
 
         mAuth = FirebaseAuth.getInstance();
         //Uncomment to get to register page again
@@ -57,6 +63,23 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    public void EnableRuntimePermission(){
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                RegisterActivity.this,
+                android.Manifest.permission.READ_CONTACTS))
+        {
+
+            Toast.makeText(RegisterActivity.this,"Contacts permission allows us to Access contacts app", Toast.LENGTH_LONG).show();
+
+        } else {
+
+            ActivityCompat.requestPermissions(RegisterActivity.this,new String[]{
+                    android.Manifest.permission.READ_CONTACTS}, RequestPermissionCode);
+
+        }
     }
 
     public void ToRegister2(View view)

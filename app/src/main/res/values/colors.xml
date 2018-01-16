@@ -2,12 +2,13 @@
 <resources>
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
-    <color name="remberDark">#333</color>
+    <color name="colorAccent">#0168a4</color>
+    <color name="remberDark">#333333</color>
     <color name="remberBlue">#0168a4</color>
     <color name="remberDarkGray">#8d8d8d</color>
     <color name="remberLightGray">#cbcbcb</color>
     <color name="remberWhite">#ffffff</color>
     <color name="grayButton">#696969</color>
+    <color name="remberBlack">#000000</color>
 
 </resources>
