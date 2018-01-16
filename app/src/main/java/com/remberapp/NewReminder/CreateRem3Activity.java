@@ -150,8 +150,10 @@ public class CreateRem3Activity extends AppCompatActivity {
 
                     create.setBackgroundResource(R.drawable.rounded_shape);
                     create.setTextColor(Color.WHITE);
-                    //TODO: Change number to MY number;
-                    numberProp = "0700412743";
+                    //TODO: Change number to USER number;
+                    String userNr = "0" + currentUser.getPhoneNumber().substring(3, currentUser.getPhoneNumber().length());
+                    numberProp = userNr;
+                    numberView.setText(numberProp);
                 } else {
                     listView.setVisibility(View.VISIBLE);
                     search.setVisibility(View.VISIBLE);
@@ -208,10 +210,17 @@ public class CreateRem3Activity extends AppCompatActivity {
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
                     if(dataSnapshot.hasChild(numberProp)){
-                        listProp.put("description", descriptionProp);
+                        if (descriptionProp.equals("")) {
+                            listProp.put("description", "No description.");
+                        } else {
+                            listProp.put("description", descriptionProp);
+                        }
+
                         listProp.put("title", titleProp);
                         listProp.put("date", dateProp);
+                        //TODO:number prop to USER number
                         listProp.put("from", currentUser.getPhoneNumber());
+                        listProp.put("new", "new");
                         ref.child(numberProp).push().setValue(listProp);
                         alertDialog.show();
                     }

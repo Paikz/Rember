@@ -19,6 +19,7 @@ import com.remberapp.R;
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -116,7 +117,12 @@ public class CreateRem2Activity extends AppCompatActivity {
     };
 
     public void ToStage3 (View view) {
-        bundle.putString("Date", formatDateTime.format(dateTime.getTime()));
+        SimpleDateFormat sdf = new SimpleDateFormat("MMM d, yyyy HH:mm:ss");
+        String temp1 = formatDateTime.format(dateTime.getTime());
+        String temp = temp1.substring(0 , temp1.length() - 2);
+        temp = temp + "00";
+
+        bundle.putString("Date", temp);
         Intent intent = new Intent(this, CreateRem3Activity.class);
         intent.putExtras(bundle);
         startActivity(intent);
